@@ -43,14 +43,14 @@ After activate plugin you will see "User Profile" menu at left side on WordPress
 This short-code for user profile, you can paste short-code anywhere on content by fixed author id or auhtor.php page by making dynamic author id.
 Display on content:
 
-`[up_author_profile themes="twitter" id="1"]`
+`[up_author_profile themes="flat" id="1"]`
 
 Display on author.php
 
 `<?php
 $author = get_queried_object();
 $authorid = $author->ID;
-echo do_shortcode( '[up_author_profile themes="twitter" id="'.$authorid.'"]' ); 
+echo do_shortcode( '[up_author_profile themes="flat" id="'.$authorid.'"]' ); 
 ?>`
 
 
@@ -59,7 +59,7 @@ echo do_shortcode( '[up_author_profile themes="twitter" id="'.$authorid.'"]' );
 == Screenshots ==
 
 1. screenshot-1
-
+2. screenshot-2
 
 == Changelog ==
 

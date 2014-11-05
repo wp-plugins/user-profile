@@ -839,10 +839,10 @@ else
                     <p class="option-title">Short-code for Author Profile</p>
                     <p class="option-info">This short-code for user profile, you can paste short-code anywhere on content by fixed author id or auhtor.php page by making dynamic author id.</p>
                    <strong> Display on content:</strong><br />
-                    <pre>[up_author_profile themes="twitter" id="1"]</pre><br />
+                    <pre>[up_author_profile themes="flat" id="1"]</pre><br />
                     
                     <strong>Display on author.php</strong><br />
-                    <pre>&#60;?php<br />$author = get_queried_object();<br />$authorid = $author->ID;<br />echo do_shortcode( '&#91;up_author_profile themes="twitter" id="'.$authorid.'"&#93;' ); <br />?&#62;</pre>
+                    <pre>&#60;?php<br />$author = get_queried_object();<br />$authorid = $author->ID;<br />echo do_shortcode( '&#91;up_author_profile themes="flat" id="'.$authorid.'"&#93;' ); <br />?&#62;</pre>
                 </div>
            
 
