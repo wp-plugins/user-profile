@@ -12,6 +12,10 @@ function up_paratheme_author_profile_info($author_id)
 	{
 		
 		$user_url = get_the_author_meta( 'user_url', $author_id );		
+		$company = get_the_author_meta( 'company', $author_id );			
+		$position = get_the_author_meta( 'position', $author_id );
+		$gender = get_the_author_meta( 'gender', $author_id );		
+				
 		
 		$facebook = get_the_author_meta( 'facebook', $author_id );
 		$twitter = get_the_author_meta( 'twitter', $author_id );		
@@ -27,15 +31,22 @@ function up_paratheme_author_profile_info($author_id)
 		$country = get_the_author_meta( 'country', $author_id );		
 		
 		
-		$html .= '
+		$html .= '<ul class="author-info-list">';
+		
+		if(!empty($display_name))
+		$html .= '<li><i class="fa fa-user"></i>'.ucfirst($display_name).'</li>';
+		
+		if(!empty($company))
+		$html .= '<li><i class="fa fa-university"></i>'.ucfirst($position).' at '.ucfirst($company).'</li>	';
+		
+		if(!empty($country))
+		$html .= '<li><i class="fa fa-globe"></i>'.ucfirst($country).'</li>';
+		
+		if(!empty($user_url))
+		$html .= '<li><i class="fa fa-link"></i><a href="'.$user_url.'">'.$user_url.'</a></li>';
 
-			<ul class="author-info-list">
-			<li><i class="fa fa-user"></i>'.ucfirst($display_name).'</li>			
-			<li><i class="fa fa-globe"></i>'.ucfirst($country).'</li>
-			<li><i class="fa fa-link"></i><a href="'.$user_url.'">'.$user_url.'</a></li> 
 
-
-			</ul>';		
+		$html .= '</ul>';		
 		$html .= '';
 		
 		
@@ -170,8 +181,8 @@ function up_paratheme_author_post_list($author_id)
 				
 				
 				
-		$html.= '<div class="post-title"><i class="fa fa-file-text-o"></i>
-'.get_the_title().'</div>
+		$html.= '<div class="post-title"><a href="'.get_permalink().'"><i class="fa fa-file-text-o"></i>
+'.get_the_title().'</a></div>
 		<div class="post-content">'.wp_trim_words( get_the_content() , 30, '<a class="read-more" href="'. get_permalink() .'">Read More</a>' ).'</div>
 
 		
@@ -278,29 +289,30 @@ add_action('wp_ajax_nopriv_up_paratheme_add_new_field', 'up_paratheme_add_new_fi
 function up_paratheme_reset()
 	{
 		
-		$up_paratheme_input_fields_meta = array("facebook"=>"facebook","twitter"=>"twitter","google-plus"=>"google-plus","pinterest"=>"pinterest","linkedin"=>"linkedin","gender"=>"gender","first_name"=>"first_name","last_name"=>"last_name","profile_img"=>"profile_img","profile_cover"=>"profile_cover","country"=>"country");
+		$up_paratheme_input_fields_meta = array("company"=>"company","position"=>"position","gender"=>"gender","profile_img"=>"profile_img","profile_cover"=>"profile_cover","country"=>"country","facebook"=>"facebook","twitter"=>"twitter","google-plus"=>"google-plus","pinterest"=>"pinterest","linkedin"=>"linkedin");
 	
 
-		$up_paratheme_input_fields_lable = array("facebook"=>"Facebook","twitter"=>"Twitter","google-plus"=>"Google Plus","pinterest"=>"Pinterest","linkedin"=>"Linkedin","gender"=>"Gender","first_name"=>"First  Name","last_name"=>"Last Name","profile_img"=>"Profile Image","profile_cover"=>"Profile Cover","country"=>"Country");
+		$up_paratheme_input_fields_lable = array("company"=>"Company","position"=>"Position","gender"=>"Gender","profile_img"=>"Profile Image","profile_cover"=>"Profile Cover","country"=>"Country","facebook"=>"Facebook","twitter"=>"Twitter","google-plus"=>"Google Plus","pinterest"=>"Pinterest","linkedin"=>"Linkedin",);
 		
 			
-		$up_paratheme_input_fields_type = array("facebook"=>"text","twitter"=>"text","google-plus"=>"text","pinterest"=>"text","linkedin"=>"text","gender"=>"text","first_name"=>"text","last_name"=>"text","profile_img"=>"file","profile_cover"=>"file","country"=>"text");
+		$up_paratheme_input_fields_type = array("company"=>"text","position"=>"text","gender"=>"text","profile_img"=>"file","profile_cover"=>"file","country"=>"text","facebook"=>"text","twitter"=>"text","google-plus"=>"text","pinterest"=>"text","linkedin"=>"text",);
 				
-		$up_paratheme_input_fields_icon = array("facebook"=>"facebook","twitter"=>"twitter","google-plus"=>"google-plus","pinterest"=>"pinterest","linkedin"=>"linkedin","gender"=>"user","first_name"=>"pencil","last_name"=>"pencil","profile_img"=>"image","profile_cover"=>"image","country"=>"map-marker");
+		$up_paratheme_input_fields_icon = array("company"=>"university","position"=>"bookmark","gender"=>"user","profile_img"=>"image","profile_cover"=>"image","country"=>"map-marker","facebook"=>"facebook","twitter"=>"twitter","google-plus"=>"google-plus","pinterest"=>"pinterest","linkedin"=>"linkedin",);
 			
 
 		$up_paratheme_input_fields_tooltip = array(
+			"company"=>"Input field for Company",
+			"position"=>"Input field for Position",
+			"gender"=>"Input field for Gender",
+			"profile_img"=>"Input field for Profile Image",
+			"profile_cover"=>"Input field for Profile Cover",
+			"country"=>"Input field for Country",
 			"facebook"=>"Input field for Facebook",
 			"twitter"=>"Input field for Twitter",
 			"google-plus"=>"Input field for Google Plus",
 			"pinterest"=>"Input field for  Pinterest",
 			"linkedin"=>"Input field for linkedin",
-			"gender"=>"Input field for Gender",
-			"first_name"=>"Input field for First Name",
-			"last_name"=>"Input field for Last Name",
-			"profile_img"=>"Input field for Profile Image",
-			"profile_cover"=>"Input field for Profile Cover",
-			"country"=>"Input field for Country");
+			);
 		
 		
 		

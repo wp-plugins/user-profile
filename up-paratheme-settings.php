@@ -20,38 +20,38 @@ if(empty($_POST['up_paratheme_hidden']))
 		
 		if(empty($up_paratheme_input_fields_meta))
 			{
-				$up_paratheme_input_fields_meta = array("facebook"=>"facebook","twitter"=>"twitter","google-plus"=>"google-plus","pinterest"=>"pinterest","linkedin"=>"linkedin","file"=>"file","gender"=>"gender","first_name"=>"first_name","last_name"=>"last_name");
+				$up_paratheme_input_fields_meta = array("facebook"=>"facebook","twitter"=>"twitter","google-plus"=>"google-plus","pinterest"=>"pinterest","linkedin"=>"linkedin","gender"=>"gender","profile_img"=>"profile_img","profile_cover"=>"profile_cover","country"=>"country");
 			}
 			
 		if(empty($up_paratheme_input_fields_lable))
 			{
-				$up_paratheme_input_fields_lable = array("facebook"=>"Facebook","twitter"=>"Twitter","google-plus"=>"Google Plus","pinterest"=>"Pinterest","linkedin"=>"Linkedin","file"=>"File","gender"=>"Gender","first_name"=>"First  Name","last_name"=>"Last Name");
+				$up_paratheme_input_fields_lable = array("facebook"=>"Facebook","twitter"=>"Twitter","google-plus"=>"Google Plus","pinterest"=>"Pinterest","linkedin"=>"Linkedin","gender"=>"Gender","profile_img"=>"Profile Image","profile_cover"=>"Profile Cover","country"=>"Country");
 			}			
 			
 		if(empty($up_paratheme_input_fields_type))
 			{
-				$up_paratheme_input_fields_type = array("facebook"=>"text","twitter"=>"text","google-plus"=>"text","pinterest"=>"text","linkedin"=>"text","file"=>"file","gender"=>"text","first_name"=>"text","last_name"=>"text");
+				$up_paratheme_input_fields_type = array("facebook"=>"text","twitter"=>"text","google-plus"=>"text","pinterest"=>"text","linkedin"=>"text","gender"=>"text","profile_img"=>"file","profile_cover"=>"file","country"=>"text");
 			}				
 			
 			
 			
 		if(empty($up_paratheme_input_fields_icon))
 			{
-				$up_paratheme_input_fields_icon = array("facebook"=>"facebook","twitter"=>"twitter","google-plus"=>"google-plus","pinterest"=>"pinterest","linkedin"=>"linkedin","file"=>"file","gender"=>"user","first_name"=>"pencil","last_name"=>"pencil");
+				$up_paratheme_input_fields_icon = array("facebook"=>"facebook","twitter"=>"twitter","google-plus"=>"google-plus","pinterest"=>"pinterest","linkedin"=>"linkedin","gender"=>"user","profile_img"=>"image","profile_cover"=>"image","country"=>"map-marker");
 			}			
 			
 		if(empty($up_paratheme_input_fields_tooltip))
 			{
 				$up_paratheme_input_fields_tooltip = array(
-				"facebook"=>"Input field for Facebook",
-				"twitter"=>"Input field for Twitter",
-				"google-plus"=>"Input field for Google Plus",
-				"pinterest"=>"Input field for  Pinterest",
-				"linkedin"=>"Input field for linkedin",
-				"file"=>"Input field for File",
-				"gender"=>"Input field for Gender",
-				"first_name"=>"Input field for First Name",
-				"last_name"=>"Input field for Last Name");
+					"facebook"=>"Input field for Facebook",
+					"twitter"=>"Input field for Twitter",
+					"google-plus"=>"Input field for Google Plus",
+					"pinterest"=>"Input field for  Pinterest",
+					"linkedin"=>"Input field for linkedin",
+					"gender"=>"Input field for Gender",
+					"profile_img"=>"Input field for Profile Image",
+					"profile_cover"=>"Input field for Profile Cover",
+					"country"=>"Input field for Country");
 			}			
 		
 		

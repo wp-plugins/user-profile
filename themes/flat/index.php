@@ -17,11 +17,16 @@ function up_paratheme_ap_theme_flat($author_id)
 		$profile_img = get_the_author_meta( 'profile_img', $author_id );		
 		$profile_cover = get_the_author_meta( 'profile_cover', $author_id );
 		
-		
+
+
+		if ( wp_is_mobile() ) {
+			
+				$ismobile = "mobile";
+			}
+
 			
 		$html = '';
-		
-		$html .= '<div class="up-author-profile flat">';
+		$html .= '<div class="up-author-profile flat '.$ismobile.'">';
 		$html .= '<div class="cover-area">';
 		$html .= '<div class="cover" style="background:url('.$profile_cover.') repeat scroll 0 0 rgba(0, 0, 0, 0);"></div>';		
 		$html .= '<div class="profile-img-area" ><img class="profile-img"  src="'.$profile_img.'" /></div>'; // end cover
@@ -29,10 +34,12 @@ function up_paratheme_ap_theme_flat($author_id)
 		$html .= '</div>'; // end cover-area
 		$html .= '<div class="tabs-area">
    			<div class="nav-container">
-				<ul class="author-tab-nav"> 
+				<ul class="author-tab-nav">
+					<li nav="1" class="nav1 active">Post</li>
 					<li nav="2" class="nav2">Comments</li>
 					<li nav="3" class="nav3">About</li>
-					<li nav="1" class="nav1 active">Post</li>
+
+
 
 
 				</ul> <!-- tab-nav end -->

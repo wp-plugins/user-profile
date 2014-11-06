@@ -42,13 +42,14 @@ width:auto;
 }
 .up-author-profile.flat .profile-img-area {
   border: 3px solid rgb(255, 255, 255);
+  box-shadow: 0 0 2px -1px rgb(0, 0, 0);
   height: 160px;
   left: 50px;
   margin: 0;
   overflow: hidden;
   padding: 0;
   position: absolute;
-  top: 138px;
+  top: 160px;
   width: 160px;
 }
 .up-author-profile.flat .profile-img{
@@ -78,18 +79,18 @@ height:50px;
 margin:0;
 padding:0;
 }
-.up-author-profile.flat .author-tab-nav{
-text-align:left;
-width:65%;
+.up-author-profile.flat .author-tab-nav {
+  margin-left: 250px;
+  text-align: left;
 }
-.up-author-profile.flat .author-tab-nav li{
-border-bottom:4px solid rgb(255, 255, 255);
-cursor:pointer;
-display:inline-block;
-float:right;
-height:26px;
-margin:0;
-padding:10px 20px;
+.up-author-profile.flat .author-tab-nav li {
+  border-bottom: 4px solid rgb(255, 255, 255);
+  cursor: pointer;
+  display: inline-block;
+  float: left;
+  height: 26px;
+  margin: 0;
+  padding: 10px 20px;
 }
 .up-author-profile.flat .author-tab-nav li:hover{
 border-bottom:4px solid rgb(0, 132, 180);
@@ -101,7 +102,7 @@ border-bottom:4px solid rgb(0, 132, 180);
 border:1px solid rgb(221, 221, 221);
 display:inline-block;
 float:left;
-margin:50px 0 0;
+margin:30px 0 0;
 padding:0;
 text-align:left;
 vertical-align:top;
@@ -110,7 +111,7 @@ width:32%;
 .up-author-profile.flat .box-container{
 display:inline-block;
 float:right;
-margin:50px 0 0;
+margin:30px 0 0;
 padding:0;
 position:relative;
 vertical-align:top;
@@ -149,6 +150,11 @@ margin:0;
 padding:20px 0 10px 10px;
 text-align:left;
 }
+
+.up-author-profile.flat .author-post .post-title a {
+  text-decoration: none;
+}
+
 .up-author-profile.flat .author-post .post-content{
 font-size:12px;
 line-height:20px;
@@ -251,7 +257,9 @@ text-decoration:none;
 @media all and (max-width: 799px){
 	
 	
-
+.up-author-profile.flat .profile-img-area {
+  top: 100px;
+}
 
 .up-author-profile.flat .profile-info{
 width:100%;
@@ -262,7 +270,7 @@ width:100%;
 margin: 15px 0 0;
 }
 .up-author-profile.flat .author-tab-nav{
-width:100%;
+	margin-left:0;
 }
 
 .up-author-profile.flat .author-tab-nav li {

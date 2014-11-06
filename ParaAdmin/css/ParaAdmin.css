@@ -212,6 +212,7 @@
 .para-settings .success {
   background: none repeat scroll 0 0 rgb(105, 221, 157);
   padding: 5px 10px;
+  display:none;
 }
 .para-settings .para-form-table {
 
