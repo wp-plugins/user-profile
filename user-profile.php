@@ -2,7 +2,7 @@
 /*
 Plugin Name: User Profile
 Plugin URI: 
-Description: 
+Description: Creating unlimited user profile field.
 Version: 1.0
 Author: paratheme
 Author URI: http://paratheme.com
@@ -67,7 +67,7 @@ register_activation_hook(__FILE__, 'up_paratheme_activation');
 
 function up_paratheme_activation()
 	{
-		$up_paratheme_version= "1.0";
+		$up_paratheme_version= "1.1";
 		update_option('up_paratheme_version', $up_paratheme_version); //update plugin version.
 		
 		$up_paratheme_customer_type= "free"; //customer_type "free"

@@ -63,8 +63,16 @@ function up_paratheme_post_author_about($author_id)
 		
 		$description  = get_the_author_meta( 'description', $author_id );
 		
-		
-		$html .= '<div class="author-about"><div class="description">'.$description."</div>";		
+		$html .= '<div class="author-about">';
+		if(!empty($description))
+			{
+				$html .= '<div class="description">'.$description.'</div>';
+			}
+		else
+			{
+				$html .= '<div class="description">This user hasn\'t filled description yet.</div>';
+			}
+				
 		$html .= '</div>';
 		
 		
@@ -84,11 +92,7 @@ function up_paratheme_author_comment_list($author_id)
 		
 		
 		$profile_img = get_the_author_meta( 'profile_img', $author_id );
-		
-		
-		
-		
-		
+		$display_name = get_the_author_meta( 'display_name', $author_id );			
 		
 		
 		$html = '';
@@ -103,18 +107,31 @@ function up_paratheme_author_comment_list($author_id)
 		
 		$comments = get_comments($args);
 		
-			foreach($comments as $comment) :
+		if(!empty($comments))
+			{
+				foreach($comments as $comment) :
+					
+					$html .= '<div class="comment">';
+					$html .= '<div class="author-thumb"><img src="'.$profile_img.'" /></div>';
+					$html .= '<div class="author-name">'.$comment->comment_author.'</div>';
+					$html .= '<div class="author-comment">'.$comment->comment_content.'</div>';
+	
+					
+					$html .= '</div>';
+					
+					
+				endforeach;
+		
+			}
+		else
+			{
+					$html .= '<div class="comment">';
+					$html .= '<div class="author-comment">No Comment Found</div>';
+					$html .= '</div>';	
 				
-				$html .= '<div class="comment">';
-				$html .= '<div class="author-thumb"><img src="'.$profile_img.'" /></div>';
-				$html .= '<div class="author-name">'.$comment->comment_author.'</div>';
-				$html .= '<div class="author-comment">'.$comment->comment_content.'</div>';
+			}
+			
 
-				
-				$html .= '</div>';
-				
-				
-			endforeach;
 		
 		$html .= '</div>';
 		
@@ -144,14 +161,14 @@ function up_paratheme_author_post_list($author_id)
 				
 			) );
 				
-				
+		$html = '';
+		$html.= '<div class="author-post-list" >';
 		
 		if ( $wp_query->have_posts() ) :
 		
 		
 		
-		$html = '';
-		$html.= '<div class="author-post-list" >';
+
 		
 		
 		while ( $wp_query->have_posts() ) : $wp_query->the_post();
@@ -194,6 +211,16 @@ function up_paratheme_author_post_list($author_id)
 		endwhile;
 		
 		wp_reset_query();
+		
+		else :
+		
+		$html.= '<div class="author-post" >';
+
+		$html.= '<div class="post-title"><a href="'.get_permalink().'"><i class="fa fa-file-text-o"></i>
+No Post Found</a></div>
+		<div class="post-content">No post found for this user.</div>
+
+			</div>';	
 		
 		endif;
 		

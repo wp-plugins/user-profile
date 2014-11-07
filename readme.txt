@@ -4,7 +4,7 @@
 	Tags: user profile, Custom User Profile
 	Requires at least: 3.8
 	Tested up to: 4.0
-	Stable tag: 1.0
+	Stable tag: 1.1
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -62,6 +62,13 @@ echo do_shortcode( '[up_author_profile themes="flat" id="'.$authorid.'"]' );
 2. screenshot-2
 
 == Changelog ==
+
+
+	= 1.1 =
+	
+    * 07/11/2014 Fix - Empty post issue.
+    * 07/11/2014 Fix - Empty commemts issue.
+    * 07/11/2014 Fix - Empty porfile description issue.
 
 	= 1.0 =
 	
