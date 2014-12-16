@@ -3,7 +3,7 @@
 Plugin Name: User Profile
 Plugin URI: 
 Description: Creating unlimited user profile field.
-Version: 1.0
+Version: 1.1
 Author: paratheme
 Author URI: http://paratheme.com
 License: GPLv2 or later
