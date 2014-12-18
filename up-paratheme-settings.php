@@ -864,9 +864,14 @@ else
 
 
 
+<!-- 
+
 <p class="submit">
                     <input class="button button-primary" type="submit" name="Submit" value="<?php _e('Save Changes' ) ?>" />
                 </p>
+
+
+-->
 		</form>
 
 

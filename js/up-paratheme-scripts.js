@@ -30,7 +30,7 @@ jQuery(document).ready(function($)
 				
 				if(meta == "")
 					{
-						alert("Meta Key field eampty.");
+						alert("Meta Key field empty.");
 					}
 				else
 					{

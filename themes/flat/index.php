@@ -28,8 +28,25 @@ function up_paratheme_ap_theme_flat($author_id)
 		$html = '';
 		$html .= '<div class="up-author-profile flat '.$ismobile.'">';
 		$html .= '<div class="cover-area">';
-		$html .= '<div class="cover" style="background:url('.$profile_cover.') repeat scroll 0 0 rgba(0, 0, 0, 0);"></div>';		
-		$html .= '<div class="profile-img-area" ><img class="profile-img"  src="'.$profile_img.'" /></div>'; // end cover
+		if(!empty($profile_cover))
+			{
+			$html .= '<div class="cover" style="background:url('.$profile_cover.') repeat scroll 0 0 rgba(0, 0, 0, 0);"></div>';	
+			}
+		else
+			{
+			$html .= '<div class="cover" style="background:url('.up_paratheme_plugin_url.'css/cover.png'.') repeat scroll 0 0 rgba(0, 0, 0, 0);"></div>';	
+			}
+			
+		
+		if(!empty($profile_img))
+			{
+			$html .= '<div class="profile-img-area" ><img class="profile-img"  src="'.$profile_img.'" /></div>'; 
+			}
+		else
+			{
+			$html .= '<div class="profile-img-area" ><img class="profile-img"  src="'.up_paratheme_plugin_url.'css/avatar.png" /></div>'; 
+			}
+		
 		
 		$html .= '</div>'; // end cover-area
 		$html .= '<div class="tabs-area">

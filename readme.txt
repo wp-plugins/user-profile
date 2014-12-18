@@ -4,11 +4,11 @@
 	Tags: user profile, Custom User Profile
 	Requires at least: 3.8
 	Tested up to: 4.0
-	Stable tag: 1.1
+	Stable tag: 1.2
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-	Creating unlimited user profile field.
+	Creating unlimited user profile field and awesome author profile.
 
 == Description ==
 
@@ -19,6 +19,8 @@ We have designed special author profile for users as like social profile. displa
 
 ### User Profile by http://paratheme.com
 
+* [PLugin Page!&raquo;](http://paratheme.com/items/user-profile-awesome-user-profile-page-for-wordpress/)
+* [Support!&raquo;](http://paratheme.com/qa/)
 
 <strong>Plugin Features</strong><br />
 
@@ -63,6 +65,12 @@ echo do_shortcode( '[up_author_profile themes="flat" id="'.$authorid.'"]' );
 
 == Changelog ==
 
+
+	= 1.2 =
+	
+    * 18/12/2014 Fix - Remove save changes from setting page.
+    * 18/12/2014 add - Added empty profile image.
+    * 18/12/2014 add - Added empty cover image.
 
 	= 1.1 =
 	

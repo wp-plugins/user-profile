@@ -112,7 +112,15 @@ function up_paratheme_author_comment_list($author_id)
 				foreach($comments as $comment) :
 					
 					$html .= '<div class="comment">';
-					$html .= '<div class="author-thumb"><img src="'.$profile_img.'" /></div>';
+					if(!empty($profile_img))
+						{
+						$html .= '<div class="author-thumb"><img src="'.$profile_img.'" /></div>';
+						}
+					else
+						{
+						$html .= '<div class="author-thumb"><img src="'.up_paratheme_plugin_url.'css/avatar.png" /></div>';
+						}
+					
 					$html .= '<div class="author-name">'.$comment->comment_author.'</div>';
 					$html .= '<div class="author-comment">'.$comment->comment_content.'</div>';
 	

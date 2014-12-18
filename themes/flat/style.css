@@ -18,13 +18,12 @@ margin:0;
 padding:0;
 position:relative;
 }
-.up-author-profile.flat .cover{
-
-
-height:300px;
-margin:0;
-overflow:hidden;
-padding:0;
+.up-author-profile.flat .cover {
+  background-size: 100% auto !important;
+  height: 300px;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
 }
 .up-author-profile.flat .cover-img{
 /*border-radius*/
@@ -221,9 +220,10 @@ overflow:hidden;
 padding:0;
 width:50px;
 }
-.up-author-profile.flat .comment .author-thumb img{
-margin:0;
-padding:0;
+.up-author-profile.flat .comment .author-thumb img {
+  border-radius: 0;
+  margin: 0;
+  padding: 0;
 }
 .up-author-profile.flat .comment-list .author-name{
 display:inline-block;
