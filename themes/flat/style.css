@@ -107,14 +107,14 @@ text-align:left;
 vertical-align:top;
 width:32%;
 }
-.up-author-profile.flat .box-container{
-display:inline-block;
-float:right;
-margin:30px 0 0;
-padding:0;
-position:relative;
-vertical-align:top;
-width:65%;
+.up-author-profile.flat .box-container {
+  display: inline-block;
+  float: right;
+  margin: 30px 0 35px;
+  padding: 0;
+  position: relative;
+  vertical-align: top;
+  width: 65%;
 }
 .up-author-profile.flat .author-tab-box{
 margin:0;
@@ -266,6 +266,67 @@ margin:0;
 padding:0;
 text-decoration:none;
 }
+
+.up-author-profile.flat .author-follow {
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 3px;
+  box-shadow: 0 0 6px -3px rgb(153, 153, 153);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  padding: 2px 8px;
+}
+
+.up-author-profile.flat .following {
+  background: none repeat scroll 0 0 rgba(39, 168, 210, 0.3);
+  border: 1px solid rgb(119, 119, 119);
+}
+
+
+
+.up-author-profile.flat .follower-list {
+  margin: 7px 0;
+}
+
+.up-author-profile.flat .follower-list .follower {
+  display: inline-block;
+  margin: 0 3px;
+}
+
+.up-author-profile.flat .follower-list .follower img {
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+
+.up-author-profile.flat .follower-mgs {
+  background: none repeat scroll 0 0 rgba(0, 185, 254, 0.1);
+  border-left: 3px solid rgb(254, 102, 0);
+  box-shadow: 0 1px 5px -4px rgb(0, 0, 0);
+  color: rgb(255, 0, 0);
+  font-size: 11px;
+  margin-right: 10px;
+  padding: 4px 7px;
+  display:none;
+}
+
+
+
+
+
+
+.up-author-profile.flat .clear {
+  clear: both;
+}
+
+
+
+
+
+
+
+
 @media all and (max-width: 799px){
 	
 	

@@ -3,7 +3,7 @@
 Plugin Name: User Profile
 Plugin URI: 
 Description: Creating unlimited user profile field.
-Version: 1.2
+Version: 1.3
 Author: paratheme
 Author URI: http://paratheme.com
 License: GPLv2 or later
@@ -36,13 +36,14 @@ function up_paratheme_init_scripts()
 	{
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('up_paratheme_js', plugins_url( '/js/up-paratheme-scripts.js' , __FILE__ ) , array( 'jquery' ));	
-		
 		wp_localize_script('up_paratheme_js', 'up_paratheme_ajax', array( 'up_paratheme_ajaxurl' => admin_url( 'admin-ajax.php')));
 		wp_enqueue_style('font-awesome', up_paratheme_plugin_url.'css/font-awesome.css');		
 		wp_enqueue_style('up_paratheme_style', up_paratheme_plugin_url.'css/style.css');
+		
+		// ParaAdmin
 		wp_enqueue_style('ParaAdmin', up_paratheme_plugin_url.'ParaAdmin/css/ParaAdmin.css');	
 		wp_enqueue_script('ParaAdmin', plugins_url( 'ParaAdmin/js/ParaAdmin.js' , __FILE__ ) , array( 'jquery' ));	
-
+		
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_script( 'up_paratheme_color_picker', plugins_url('/js/color-picker.js', __FILE__ ), array( 'wp-color-picker' ), false, true );
 
@@ -67,12 +68,31 @@ register_activation_hook(__FILE__, 'up_paratheme_activation');
 
 function up_paratheme_activation()
 	{
-		$up_paratheme_version= "1.2";
+		$up_paratheme_version= "1.3";
 		update_option('up_paratheme_version', $up_paratheme_version); //update plugin version.
 		
 		$up_paratheme_customer_type= "free"; //customer_type "free"
 		update_option('up_paratheme_customer_type', $up_paratheme_customer_type); //update plugin version.
+
+
+
+		global $wpdb;
 		
+        $sql = "CREATE TABLE IF NOT EXISTS " . $wpdb->prefix . "up_paratheme_follow"
+                 ."( UNIQUE KEY id (id),
+					id int(100) NOT NULL AUTO_INCREMENT,
+					author_id	INT( 255 )	NOT NULL,
+					follower_id	INT( 255 ) NOT NULL,
+					follow	VARCHAR( 255 ) NOT NULL					
+					)";
+		$wpdb->query($sql);
+
+
+
+
+
+
+
 
 		
 	}

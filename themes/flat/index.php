@@ -23,14 +23,19 @@ function up_paratheme_ap_theme_flat($author_id)
 			
 				$ismobile = "mobile";
 			}
+		else
+			{
+				$ismobile = "";
+			}
 
 			
 		$html = '';
+		
 		$html .= '<div class="up-author-profile flat '.$ismobile.'">';
 		$html .= '<div class="cover-area">';
 		if(!empty($profile_cover))
 			{
-			$html .= '<div class="cover" style="background:url('.$profile_cover.') repeat scroll 0 0 rgba(0, 0, 0, 0);"></div>';	
+			$html .= '<div class="cover" style="background:url('.$profile_cover.') no-repeat scroll 0 0 rgba(0, 0, 0, 0);"></div>';	
 			}
 		else
 			{
@@ -72,6 +77,7 @@ function up_paratheme_ap_theme_flat($author_id)
 </li>
 				</ul>
 			</div>
+			<div class="clear"> </div>
 		
 		</div>';		
 		

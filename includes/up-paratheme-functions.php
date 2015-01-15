@@ -30,9 +30,43 @@ function up_paratheme_author_profile_info($author_id)
 		$profile_cover = get_the_author_meta( 'profile_cover', $author_id );
 		$country = get_the_author_meta( 'country', $author_id );		
 		
-		
+		$html = '';
 		$html .= '<ul class="author-info-list">';
 		
+		if ( is_user_logged_in() ) 
+			{
+				$follower_id = get_current_user_id();
+			}
+		else
+			{
+				$follower_id = '';
+			}
+		
+		global $wpdb;
+		$table = $wpdb->prefix . "up_paratheme_follow";
+		$result = $wpdb->get_results("SELECT * FROM $table WHERE author_id = '$author_id' AND follower_id = '$follower_id'", ARRAY_A);
+		
+		$already_insert = $wpdb->num_rows;
+		
+		if($already_insert>0)
+			{
+				$follow_status = 'following';
+				$follow_text = 'Following';				
+			}
+		else
+			{
+				$follow_status = '';
+				$follow_text = 'Follow';		
+			}
+		
+		
+		
+
+		$html .= '<li><div authorid="'.$author_id.'" class="author-follow '.$follow_status.'">'.$follow_text.'</div></li>';	
+		
+		$html .= '<li><div class="follower-mgs"> </div><div class="follower-list">'.up_paratheme_follower_list($author_id).'</div></li>';			
+		
+
 		if(!empty($display_name))
 		$html .= '<li><i class="fa fa-user"></i>'.ucfirst($display_name).'</li>';
 		
@@ -63,6 +97,7 @@ function up_paratheme_post_author_about($author_id)
 		
 		$description  = get_the_author_meta( 'description', $author_id );
 		
+		$html = '';
 		$html .= '<div class="author-about">';
 		if(!empty($description))
 			{
@@ -188,7 +223,7 @@ function up_paratheme_author_post_list($author_id)
 		
 		
 		
-		$post_thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), $wcps_items_thumb_size );
+		$post_thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()),'full' );
 		
 		$post_thumb_url = $post_thumb['0'];
 
@@ -208,10 +243,10 @@ function up_paratheme_author_post_list($author_id)
 				
 		$html.= '<div class="post-title"><a href="'.get_permalink().'"><i class="fa fa-file-text-o"></i>
 '.get_the_title().'</a></div>
-		<div class="post-content">'.wp_trim_words( get_the_content() , 30, '<a class="read-more" href="'. get_permalink() .'">Read More</a>' ).'</div>
+		<div class="post-content">'.wp_trim_words( get_the_content() , 30, '<a class="read-more" href="'. get_permalink() .'">Read More</a>' ).'</div>';
 
-		
-		<div class="post-thumb"><a href="'.get_permalink().'"><img src="'.$post_thumb_url.'" /></a></div>
+		if(!empty($post_thumb_url))
+		$html.= '<div class="post-thumb"><a href="'.get_permalink().'"><img src="'.$post_thumb_url.'" /></a></div>
 		
 
 			</div>';
@@ -407,9 +442,9 @@ add_action( 'show_user_profile', 'up_paratheme_extra_fields' );
 add_action( 'edit_user_profile', 'up_paratheme_extra_fields' );
 
 function up_paratheme_extra_fields( $user )
-{
+	{
     ?>
-        <h3>Extra Profile Fields</h3>
+        <h3>Extra Profile Fields(By User Profile Plugin)</h3>
 
         <table class="form-table">
         
@@ -421,7 +456,44 @@ function up_paratheme_extra_fields( $user )
 		$up_paratheme_input_fields_type = get_option( 'up_paratheme_input_fields_type' );
 		$up_paratheme_input_fields_tooltip = get_option( 'up_paratheme_input_fields_tooltip' );		
 		
+
 		
+		if(empty($up_paratheme_input_fields_meta))
+			{
+				$up_paratheme_input_fields_meta = array("company"=>"company","position"=>"position","gender"=>"gender","profile_img"=>"profile_img","profile_cover"=>"profile_cover","country"=>"country","facebook"=>"facebook","twitter"=>"twitter","google-plus"=>"google-plus","pinterest"=>"pinterest","linkedin"=>"linkedin");
+			}
+
+		if(empty($up_paratheme_input_fields_lable))
+			{
+				$up_paratheme_input_fields_lable = array("company"=>"Company","position"=>"Position","gender"=>"Gender","profile_img"=>"Profile Image","profile_cover"=>"Profile Cover","country"=>"Country","facebook"=>"Facebook","twitter"=>"Twitter","google-plus"=>"Google Plus","pinterest"=>"Pinterest","linkedin"=>"Linkedin",);
+			}
+
+		if(empty($up_paratheme_input_fields_type))
+			{
+				$up_paratheme_input_fields_type = array("company"=>"text","position"=>"text","gender"=>"text","profile_img"=>"file","profile_cover"=>"file","country"=>"text","facebook"=>"text","twitter"=>"text","google-plus"=>"text","pinterest"=>"text","linkedin"=>"text",);
+			}
+
+
+		if(empty($up_paratheme_input_fields_tooltip))
+			{
+				$up_paratheme_input_fields_tooltip = array(
+					"company"=>"Input field for Company",
+					"position"=>"Input field for Position",
+					"gender"=>"Input field for Gender",
+					"profile_img"=>"Input field for Profile Image",
+					"profile_cover"=>"Input field for Profile Cover",
+					"country"=>"Input field for Country",
+					"facebook"=>"Input field for Facebook",
+					"twitter"=>"Input field for Twitter",
+					"google-plus"=>"Input field for Google Plus",
+					"pinterest"=>"Input field for  Pinterest",
+					"linkedin"=>"Input field for linkedin",
+					);
+			}
+
+
+
+
 		
             foreach ($up_paratheme_input_fields_meta as $value) {
                 if(!empty($value))
@@ -558,18 +630,131 @@ function save_up_paratheme_extra_fields( $user_id )
 
 
 
+function up_paratheme_update_follow($postid)
+	{
+		$authorid = $_POST['authorid'];
+		$author_info = get_userdata( $authorid );
+		$html = array();
+		
+		
+		if ( is_user_logged_in() ) 
+			{
+				$follower_id = get_current_user_id();
+				
+				if($authorid == $follower_id)
+					{
+						$html['self_follow'] = 'You cant follow yourself.';
+					}
+				else
+					{
+						global $wpdb;
+						$table = $wpdb->prefix . "up_paratheme_follow";
+						$result = $wpdb->get_results("SELECT * FROM $table WHERE author_id = '$authorid' AND follower_id = '$follower_id'", ARRAY_A);
+						
+						$already_insert = $wpdb->num_rows;
+					
+						if($already_insert > 0 )
+							{
+									
+								$wpdb->delete( $table, array( 'author_id' => $authorid, 'follower_id' => $follower_id), array( '%d','%d' ) );
+								//$wpdb->query("UPDATE $table SET followed = '$followed' WHERE author_id = '$authorid' AND follower_id = '$follower_id'");
+								
+								
+								
+								$html['unfollow_success'] = 'You are not following <strong>'. $author_info->user_login.'</strong>';
+								$html['follow_class'] = 'follow_no';
+								$html['follower_id'] = $follower_id;
+								
+							}
+						else
+							{
+								$wpdb->query( $wpdb->prepare("INSERT INTO $table 
+															( id, author_id, follower_id, follow)
+													VALUES	( %d, %d, %d, %s )",
+													array	( '', $authorid, $follower_id, 'yes')
+															));
+															
+								$html['follow_success'] = 'Thanks for following <strong>'.$author_info->user_login.'</strong>';
+								$html['follow_class'] = 'follow_yes';
+								
+								$html['follower_html'] = '<div class="follower follower-'.$follower_id.'">'.get_avatar( $follower_id, 32 ).'</div>';
+								
+								
+								
+
+								
+								
+								
+								
+								
+							}
+		
+		
+		
+		
+
+					}
+
+				
+				
+				
+				
+			}
+		else
+			{
+				$html['login_error'] = 'Please login first.';
+			}
+		
+		
+		echo json_encode($html);
+		
+
+		die();		
+				
+				
+		
+
+	}
+
+add_action('wp_ajax_up_paratheme_update_follow', 'up_paratheme_update_follow');
+add_action('wp_ajax_nopriv_up_paratheme_update_follow', 'up_paratheme_update_follow');
 
 
 
+function up_paratheme_follower_list($author_id)
+	{
+
+	
+		if ( is_user_logged_in() ) 
+			{
+				$follower_id = get_current_user_id();
+			}
+	
+		global $wpdb;
+		$table = $wpdb->prefix . "up_paratheme_follow";
+		$entries = $wpdb->get_results("SELECT * FROM $table WHERE author_id = '$author_id' ORDER BY id DESC LIMIT 10");
+		
+		$already_insert = $wpdb->num_rows;
+		
+		$html ='';
+
+		foreach( $entries as $entry )
+			{
+				$follower_id = $entry->follower_id;
+				
+				$html .= '<div class="follower follower-'.$follower_id.'">';
+				$html .= get_avatar( $follower_id, 32 );;				
+				
+				$html .= '</div>';
+			}
+		
+		return $html;
+		
+		
 
 
-
-
-
-
-
-
-
+		
+	}
 
 
 

@@ -203,7 +203,7 @@ else
                             <tr>
                                 <th>Icon</th>
                                 <td>
-                                
+                                <div class="up-icon-list">
                                 <?php
 
 	$fa_icons = array(
@@ -804,7 +804,7 @@ else
 									}
 									
 								?>
-                                
+                                </div>
                                 </td>
                             </tr>
 

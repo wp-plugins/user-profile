@@ -3,8 +3,8 @@
 	Donate link: http://paratheme.com
 	Tags: user profile, Custom User Profile
 	Requires at least: 3.8
-	Tested up to: 4.0
-	Stable tag: 1.2
+	Tested up to: 4.1
+	Stable tag: 1.3
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,7 +19,7 @@ We have designed special author profile for users as like social profile. displa
 
 ### User Profile by http://paratheme.com
 
-* [PLugin Page!&raquo;](http://paratheme.com/items/user-profile-awesome-user-profile-page-for-wordpress/)
+* [Plugin Page!&raquo;](http://paratheme.com/items/user-profile-awesome-user-profile-page-for-wordpress/)
 * [Support!&raquo;](http://paratheme.com/qa/)
 
 <strong>Plugin Features</strong><br />
@@ -62,9 +62,16 @@ echo do_shortcode( '[up_author_profile themes="flat" id="'.$authorid.'"]' );
 
 1. screenshot-1
 2. screenshot-2
+3. screenshot-3
 
 == Changelog ==
 
+
+	= 1.3 =
+	
+    * 15/01/2015 add - Added author follow features.
+    * 15/01/2015 Fix - Content float issue.   
+    * 18/12/2014 Fix - Cover image repeat problem fixed.    
 
 	= 1.2 =
 	
