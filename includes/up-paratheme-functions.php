@@ -17,6 +17,10 @@ function up_paratheme_author_profile_info($author_id)
 		$gender = get_the_author_meta( 'gender', $author_id );		
 				
 		
+		$up_paratheme_input_fields_meta = get_option('up_paratheme_input_fields_meta');
+		$up_paratheme_input_fields_icon = get_option('up_paratheme_input_fields_icon');		
+		
+		
 		$facebook = get_the_author_meta( 'facebook', $author_id );
 		$twitter = get_the_author_meta( 'twitter', $author_id );		
 		$google_plus = get_the_author_meta( 'google-plus', $author_id );	
@@ -73,11 +77,32 @@ function up_paratheme_author_profile_info($author_id)
 		if(!empty($company))
 		$html .= '<li><i class="fa fa-university"></i>'.ucfirst($position).' at '.ucfirst($company).'</li>	';
 		
-		if(!empty($country))
-		$html .= '<li><i class="fa fa-globe"></i>'.ucfirst($country).'</li>';
+		foreach($up_paratheme_input_fields_meta as  $key => $profile_meta)
+			{
+				$profile_meta_value = get_the_author_meta( $profile_meta, $author_id );
+				
+				if($key =='position' || $key =='company' || $key =='profile_img' || $key =='profile_cover')
+					{
+
+					}
+				else
+					{
+						if(!empty($profile_meta_value))
+						$html .= '<li><i class="fa fa-'.$up_paratheme_input_fields_icon[$key].'"></i>'.ucfirst($profile_meta_value).'</li>';
+					}
+
+				
+			}
 		
-		if(!empty($user_url))
-		$html .= '<li><i class="fa fa-link"></i><a href="'.$user_url.'">'.$user_url.'</a></li>';
+		//print_r($up_paratheme_input_fields_meta);
+		
+
+		
+		//if(!empty($country))
+		//$html .= '<li><i class="fa fa-globe"></i>'.ucfirst($country).'</li>';
+		
+		//if(!empty($user_url))
+		//$html .= '<li><i class="fa fa-link"></i><a href="'.$user_url.'">'.$user_url.'</a></li>';
 
 
 		$html .= '</ul>';		
